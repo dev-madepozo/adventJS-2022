@@ -5,7 +5,7 @@
 
 function countHours(year, holidays) {
   return holidays.reduce((acc, cur) => {
-    const day = new Date(year + '/' + cur).getDay()
-    return day > 0 && day < 6 ? acc + 2 : acc
+    return '06'.includes(new Date(year + '/' + cur).getDay())
+      ? acc : acc + 2
   }, 0)
 }
