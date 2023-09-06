@@ -5,10 +5,8 @@
 
 
 function getFilesToBackup(lastBackup, changes) {
-  return Object.values(changes.reduce(
-    (acc, [id, time]) => {
-      if (time > lastBackup) acc[id] = id
-      return acc
-    }, {})
-  )
+  return [...new Set(
+    changes.filter(([,time]) => time > lastBackup)
+    .map(([id]) => id)
+  )].sort((a, b) => a - b)
 }
